@@ -2,6 +2,11 @@
 
 {% block content %}
 
+{% if commonNoun %}
+  <h1>Common Nouns for your PIN</h1>
+  <h3>{{commonNoun | title}}</h3>
+{% endif %}
+
 {% if famous.length > 0 %}
   <h1>Your pin matches with a famous person!</h1>
   <div class="famous-list">
