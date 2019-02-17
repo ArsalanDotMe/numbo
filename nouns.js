@@ -2,8 +2,8 @@ const FS = require('fs')
 const lineReader = require('line-reader')
 const { getAlphabet } = require('./common')
 
-const NOUNS_IN_PATH = '/Users/arsalan/Documents/nounlist-in.txt'
-const NOUNS_OUT_PATH = '/Users/arsalan/Documents/nounlist-out.tsv'
+const NOUNS_IN_PATH = './assets/nounlist-in.txt'
+const NOUNS_OUT_PATH = './outs/nounlist-out.tsv'
 
 const outStream = FS.createWriteStream(NOUNS_OUT_PATH)
 

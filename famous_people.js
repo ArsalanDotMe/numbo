@@ -1,8 +1,8 @@
 const FS = require('fs')
 const lineReader = require('line-reader')
 
-const FAMOUS_IN_PATH = '/Users/arsalan/Documents/famous-in.tsv'
-const FAMOUS_OUT_PATH = '/Users/arsalan/Documents/famous-out.tsv'
+const FAMOUS_IN_PATH = './assets/famous-in.tsv'
+const FAMOUS_OUT_PATH = './outs/famous-out.tsv'
 
 const alphabet = {
   'a': 1,
