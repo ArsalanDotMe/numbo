@@ -3,7 +3,10 @@ module.exports = async function HomeRoute (server) {
     method: 'GET',
     path: '/',
     handler: function (request, h) {
-      return h.view('home')
+      const { pin } = request.query
+      return h.view('home', {
+        pin
+      })
     }
   })
 }

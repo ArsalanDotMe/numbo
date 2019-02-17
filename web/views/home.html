@@ -1,7 +1,16 @@
 {% extends 'layout.html' %}
 
 {% block content %}
+
+{% if pin %}
+<h1>Your pin was {{pin}}</h1>
+
+{% endif %}
+
 <div>
-    <h1>Hey VSauce</h1>
+    <form action="">
+      <input type="number" name="pin" />
+      <button type="submit">Submit</button>
+    </form>
 </div>
 {% endblock %}
