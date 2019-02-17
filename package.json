@@ -4,18 +4,21 @@
   "description": "",
   "main": "web/index.js",
   "scripts": {
-    "start": "node web/index.js"
+    "start": "nodemon -e js,html,json web/index.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "nodemon": "^1.18.10",
     "standard": "^12.0.1"
   },
   "dependencies": {
     "hapi": "^18.1.0",
+    "knex": "^0.16.3",
     "line-reader": "^0.4.0",
     "nunjucks": "^3.1.7",
+    "pg": "^7.8.0",
     "vision": "^5.4.4"
   }
 }

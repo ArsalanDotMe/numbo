@@ -2,14 +2,21 @@
 
 {% block content %}
 
-{% if pin %}
-<h1>Your pin was {{pin}}</h1>
-
+{% if famous.length > 0 %}
+  <h1>Your pin matches with a famous person!</h1>
+  <div class="famous-list">
+    {% for person in famous %}
+      <div class="famous-list-item">
+        <h3>{{person.name | title}}</h3>
+        <p>{{person.intro}}</p>
+      </div>
+    {% endfor %}
+  </div>
 {% endif %}
 
 <div>
     <form action="">
-      <input type="number" name="pin" />
+      <input type="number" name="pin" value="{{pin}}" />
       <button type="submit">Submit</button>
     </form>
 </div>
