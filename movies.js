@@ -70,7 +70,7 @@ const readFile = () => {
       } catch (err) {
         return
       }
-      outStream.write([numberString, `${first} ${second}`, rank, distribution,year].join('\t') + '\n')
+      outStream.write([numberString, `${first} ${second}`, name, rank, distribution,year].join('\t') + '\n')
       if (last) {
         resolve()
       }
