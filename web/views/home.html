@@ -1,0 +1,28 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+
+{% if commonNoun %}
+  <h1>Common Nouns for your PIN</h1>
+  <h3>{{commonNoun | title}}</h3>
+{% endif %}
+
+{% if famous.length > 0 %}
+  <h1>Your pin matches with a famous person!</h1>
+  <div class="famous-list">
+    {% for person in famous %}
+      <div class="famous-list-item">
+        <h3>{{person.name | title}}</h3>
+        <p>{{person.intro}}</p>
+      </div>
+    {% endfor %}
+  </div>
+{% endif %}
+
+<div>
+    <form action="">
+      <input type="number" name="pin" value="{{pin}}" />
+      <button type="submit">Submit</button>
+    </form>
+</div>
+{% endblock %}
