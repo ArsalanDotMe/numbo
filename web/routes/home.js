@@ -8,6 +8,10 @@ module.exports = async function HomeRoute (server) {
     handler: async function (request, h) {
       const { pin } = request.query
 
+      if (!pin) {
+        return h.view('home')
+      }
+
       const famous = await db('famous_people').select().where({ pin })
       const firstPart = pin.substring(0, 2)
       const secondPart = pin.substring(2)

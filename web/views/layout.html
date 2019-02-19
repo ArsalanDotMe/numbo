@@ -1,12 +1,25 @@
-<html>
-    <title>Numbo</title>
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <title>Marx Template</title>
+
+        <!-- Marx CSS -->
+        <link rel="stylesheet" href="/public/marx.min.css">
+    </head>
     <body>
-        <div>
-            <p>Layout header</p>
-            {% block content %}
-                Default content -- should not show up!
-            {% endblock %}
-            <p>Layout footer</p>
-        </div>
+        <main>
+            <!-- Navigation -->
+            <header><h3>Numbo - <small>Remember your pins easily!</small></h3></header>
+            <article>
+                {% block content %}
+                    Default content -- should not show up!
+                {% endblock %}
+            </article>
+            <footer>Layout footer</footer>
+        </main>
     </body>
 </html>

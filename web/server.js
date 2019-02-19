@@ -1,5 +1,7 @@
+const Path = require('path')
 const Hapi = require('hapi')
 const Vision = require('vision')
+const Inert = require('inert')
 const Nunjucks = require('nunjucks')
 const HomeRoute = require('./routes/home')
 
@@ -10,6 +12,7 @@ const server = Hapi.Server({
 
 const provisionServer = async (server) => {
   await server.register(Vision)
+  await server.register(Inert)
 
   server.views({
     engines: {
@@ -31,6 +34,16 @@ const provisionServer = async (server) => {
     },
     // relativeTo: __dirname,
     path: `${__dirname}/views`
+  })
+
+  server.route({
+    method: 'GET',
+    path: '/public/{param*}',
+    handler: {
+      directory: {
+        path: Path.join(__dirname, 'public')
+      }
+    }
   })
 
   await HomeRoute(server)
