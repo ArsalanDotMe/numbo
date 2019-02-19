@@ -1,5 +1,6 @@
 const _ = require('lodash')
 const db = require('../db')
+const { alphabet } = require('../../scripts/common')
 
 module.exports = async function HomeRoute (server) {
   server.route({
@@ -8,15 +9,17 @@ module.exports = async function HomeRoute (server) {
     handler: async function (request, h) {
       const { pin } = request.query
 
+      const alphabetsMap = _.map(alphabet, (value, key) => ({ key, value }))
+
       if (!pin) {
-        return h.view('home')
+        return h.view('home', {
+          alphabetsMap
+        })
       }
 
       const famous = await db('famous_people').select().where({ pin })
       const firstPart = pin.substring(0, 2)
       const secondPart = pin.substring(2)
-
-      console.log('parts', `${firstPart}:${secondPart}`)
 
       const firstOptions = await db('common_nouns').select(['noun']).where({ pin_half: firstPart })
       const secondOptions = await db('common_nouns').select(['noun']).where({ pin_half: secondPart })
@@ -28,7 +31,8 @@ module.exports = async function HomeRoute (server) {
       return h.view('home', {
         pin,
         famous,
-        commonNoun
+        commonNoun,
+        alphabetsMap
       })
     }
   })

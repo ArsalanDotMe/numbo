@@ -25,4 +25,30 @@
       <button type="submit">Submit</button>
     </form>
 </div>
+
+<article>
+  <h2>How it works</h2>
+  <p>Use the first and last letter of both words and then using the chart below you can map them to numbers.</p>
+  <p>
+    For example in the word <strong>M</strong>ovi<strong>e</strong> <strong>N</strong>igh<strong>t</strong>,
+    characters <strong>m,e,n,t</strong> correspond to numbers <strong>5157</strong>
+  </p>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Character</th>
+        <th>Number</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for alphabet in alphabetsMap %}
+        <tr>
+          <td>{{alphabet.key}}</td>
+          <td>{{alphabet.value}}</td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</article>
 {% endblock %}
