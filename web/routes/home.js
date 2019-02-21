@@ -1,6 +1,5 @@
 const _ = require('lodash')
 const db = require('../db')
-const { alphabet } = require('../../scripts/common')
 
 module.exports = async function HomeRoute (server) {
   server.route({
@@ -9,12 +8,13 @@ module.exports = async function HomeRoute (server) {
     handler: async function (request, h) {
       const { pin } = request.query
 
-      const alphabetsMap = _.map(alphabet, (value, key) => ({ key, value }))
-
       if (!pin) {
-        return h.view('home', {
-          alphabetsMap
-        })
+        return h.view('home')
+      }
+
+      if (pin && pin.length !== 4) {
+        const pinError = 'You must specify a 4-digit pin!'
+        return h.view('home', { pin, pinError })
       }
 
       const famous = await db('famous_people').select().where({ pin })
@@ -24,15 +24,20 @@ module.exports = async function HomeRoute (server) {
       const firstOptions = await db('common_nouns').select(['noun']).where({ pin_half: firstPart })
       const secondOptions = await db('common_nouns').select(['noun']).where({ pin_half: secondPart })
       let commonNoun = null
+      let commonNounHint = null
       if (firstOptions.length > 0 && secondOptions.length > 0) {
-        commonNoun = `${_.sample(firstOptions).noun} ${_.sample(secondOptions).noun}`
+        const firstNoun = _.sample(firstOptions).noun
+        const secondNoun = _.sample(secondOptions).noun
+        commonNoun = `${firstNoun} ${secondNoun}`
+        commonNounHint = `${pin[0]}${_.repeat('-', firstNoun.length - 2)}${pin[1]} ` +
+          `${pin[2]}${_.repeat('-', secondNoun.length - 2)}${pin[3]}`
       }
 
       return h.view('home', {
         pin,
         famous,
         commonNoun,
-        alphabetsMap
+        commonNounHint
       })
     }
   })

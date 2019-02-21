@@ -1,0 +1,25 @@
+.horizontal-form {
+  display: flex;
+  flex-direction: row;
+}
+
+form .input-error {
+  color: red;
+}
+
+table.alphabets-table .number {
+  font-weight: bold;
+  font-size: 1.5em;
+}
+
+section {
+  background-color: #f7f7fb;
+  padding: 15px;
+  border-radius: 10px;
+}
+
+.word-pair {
+  font-size: 2em;
+  background: white;
+  padding: 5px;
+}
