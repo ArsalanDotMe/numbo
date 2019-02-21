@@ -7,7 +7,7 @@ const HomeRoute = require('./routes/home')
 
 const server = Hapi.Server({
   port: process.env.PORT,
-  host: process.env.HOST || 'localhost'
+  host: process.env.HOST || '0.0.0.0'
 })
 
 const provisionServer = async (server) => {
