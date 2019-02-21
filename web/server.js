@@ -6,8 +6,8 @@ const Nunjucks = require('nunjucks')
 const HomeRoute = require('./routes/home')
 
 const server = Hapi.Server({
-  port: 3000,
-  host: 'localhost'
+  port: process.env.PORT,
+  host: process.env.HOST || 'localhost'
 })
 
 const provisionServer = async (server) => {
