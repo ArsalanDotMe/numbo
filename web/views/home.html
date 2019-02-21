@@ -15,17 +15,22 @@
 </article>
 
 {% if famous.length > 0 %}
-<article>
+<section>
   <h2>Your pin matches with a famous person!</h2>
   <div class="famous-list">
     {% for person in famous %}
       <div class="famous-list-item">
-        <h3>{{person.name | title}}</h3>
+        <div>
+          <code class="word-pair">{{person.name | title}}</code>
+        </div>
+        <div>
+          <code class="word-pair">{{person.name | wordhint(pin)}}</code>
+        </div>
         <a href="https://en.wikipedia.org/?curid={{person.wikiID}}">Learn more about this person</a>
       </div>
     {% endfor %}
   </div>
-</article>
+</section>
 {% endif %}
 
 {% if commonNoun %}
@@ -35,7 +40,7 @@
     <code class="word-pair">{{commonNoun | title}}</code>
   </div>
   <div>
-    <code class="word-pair">{{commonNounHint}}</code>
+    <code class="word-pair">{{commonNoun | wordhint(pin)}}</code>
   </div>
 
   {% include 'alphabets.html' %}

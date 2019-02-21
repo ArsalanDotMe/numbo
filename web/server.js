@@ -1,3 +1,4 @@
+const _ = require('lodash')
 const Path = require('path')
 const Hapi = require('hapi')
 const Vision = require('vision')
@@ -27,6 +28,11 @@ const provisionServer = async (server) => {
 
         prepare: (options, next) => {
           options.compileOptions.environment = Nunjucks.configure(options.path, { watch: false })
+          options.compileOptions.environment.addFilter('wordhint', (words, pin) => {
+            const [firstNoun, secondNoun] = words.split(' ')
+            return `${pin[0]}${_.repeat('-', firstNoun.length - 2)}${pin[1]} ` +
+              `${pin[2]}${_.repeat('-', secondNoun.length - 2)}${pin[3]}`
+          })
 
           return next()
         }
