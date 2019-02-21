@@ -1,3 +1,5 @@
+require('dotenv-safe').config()
+
 const { server, provisionServer } = require('./server')
 
 const init = async () => {
