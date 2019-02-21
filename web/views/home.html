@@ -2,29 +2,33 @@
 
 {% block content %}
 
-{% if commonNoun %}
-  <h1>Common Nouns for your PIN</h1>
-  <h3>{{commonNoun | title}}</h3>
-{% endif %}
-
-{% if famous.length > 0 %}
-  <h1>Your pin matches with a famous person!</h1>
-  <div class="famous-list">
-    {% for person in famous %}
-      <div class="famous-list-item">
-        <h3>{{person.name | title}}</h3>
-        <p>{{person.intro}}</p>
-      </div>
-    {% endfor %}
-  </div>
-{% endif %}
-
-<div>
+<article>
     <form action="">
       <input type="number" name="pin" value="{{pin}}" />
       <button type="submit">Submit</button>
     </form>
-</div>
+</article>
+
+{% if famous.length > 0 %}
+<article>
+  <h2>Your pin matches with a famous person!</h2>
+  <div class="famous-list">
+    {% for person in famous %}
+      <div class="famous-list-item">
+        <h3>{{person.name | title}}</h3>
+        <a href="https://en.wikipedia.org/?curid={{person.wikiID}}">Learn more about this person</a>
+      </div>
+    {% endfor %}
+  </div>
+</article>
+{% endif %}
+
+{% if commonNoun %}
+<article>
+  <h2>Common Nouns for your PIN</h2>
+  <h3>{{commonNoun | title}}</h3>
+</article>
+{% endif %}
 
 <article>
   <h2>How it works</h2>
@@ -35,20 +39,56 @@
   </p>
 
   <table>
-    <thead>
-      <tr>
-        <th>Character</th>
-        <th>Number</th>
-      </tr>
-    </thead>
-    <tbody>
-      {% for alphabet in alphabetsMap %}
-        <tr>
-          <td>{{alphabet.key}}</td>
-          <td>{{alphabet.value}}</td>
-        </tr>
-      {% endfor %}
-    </tbody>
+    <tr>
+      <td>
+        <span class="number">0</span>
+        <span class="letters">a,b</span>
+      </td>
+      <td>
+        <span class="number">1</span>
+        <span class="letters">c,d,e</span>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <span class="number">2</span>
+        <span class="letters">f,g</span>
+      </td>
+      <td>
+        <span class="number">3</span>
+        <span class="letters">h,i,j</span>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <span class="number">4</span>
+        <span class="letters">k,l</span>
+      </td>
+      <td>
+        <span class="number">5</span>
+        <span class="letters">m,n,o</span>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <span class="number">6</span>
+        <span class="letters">p,q</span>
+      </td>
+      <td>
+        <span class="number">7</span>
+        <span class="letters">r,s,t</span>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <span class="number">8</span>
+        <span class="letters">u,v</span>
+      </td>
+      <td>
+        <span class="number">9</span>
+        <span class="letters">w,x,y,z</span>
+      </td>
+    </tr>
   </table>
 </article>
 {% endblock %}
